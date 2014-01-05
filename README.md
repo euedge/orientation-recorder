@@ -82,6 +82,17 @@ orientationManager.addOnChangedListener(new OnChangedListener() {
         // TODO: act on interference
     }
 });
+
+
+// stop, typically in onResume()
+orientationManager.start();
+
+...
+
+
+// stop, typically in onPause()
+orientationManager.stop();
+
 ```
 
 the registered OnChangedListener will receive orientation & location updates, on which your application can act.
@@ -95,7 +106,13 @@ File omDir = new File(getApplicationContext().getExternalFilesDir(null), "orient
 if (!omDir.exists()) {
     omDir.mkdirs();
 }
-RecordingOrientationManager recordingOrientationManager = new RecordingOrientationManager(orientationManager, omDir, false /* don't start automatically */);
+RecordingOrientationManager recordingOrientationManager = new RecordingOrientationManager(orientationManager, omDir, false);
+// false means: don't start recording automatically on a call to start()
+
+...
+
+// stop, typically in onResume()
+orientationManager.start();
 
 ...
 
@@ -106,6 +123,12 @@ recordingOrientationManager.startRecording();
 
 // stop recording
 recordingOrientationManager.stopRecording();
+
+...
+
+// stop, typically in onPause()
+orientationManager.stop();
+
 ```
 
 on each startRecording() / stopRecording() pair, a new file will be created in omDir, named after the milliseconds passed since epoch, and will contain all the orientation & location updates that were sent by the Glass' sensors. This data can be used to re-play it for development & other purposes - see below.
@@ -126,6 +149,7 @@ replayingOrientationManager.addReplayListener(new ReplayListener() {
         // TODO: handle replay finished
     }
 });
+// add the same orientation change listener as above
 orientationManager.addOnChangedListener(...);
 
 replayingOrientationManager.setFile(new File(omDir, fileName));
