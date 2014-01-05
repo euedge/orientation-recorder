@@ -111,7 +111,7 @@ RecordingOrientationManager recordingOrientationManager = new RecordingOrientati
 
 ...
 
-// stop, typically in onResume()
+// start, typically in onResume()
 orientationManager.start();
 
 ...
