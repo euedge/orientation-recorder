@@ -21,6 +21,14 @@ The following data is recorded:
  * speed
 
 
+Screenshots
+===========
+
+[!Record](https://raw.github.com/euedge/orientation-recorder/master/visuals/device-2014-01-05-171258.png)
+
+[!Playback](https://raw.github.com/euedge/orientation-recorder/master/visuals/device-2014-01-05-171312.png)
+
+
 To use as an app
 ================
 
