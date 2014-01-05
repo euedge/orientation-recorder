@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 EU Edge LLC
+ * Copyright (C) 2014 EU Edge LLC, http://euedge.com/
  *
  * This code is modification of a work of The Android Open Source Project,
  * see the original license statement below.
