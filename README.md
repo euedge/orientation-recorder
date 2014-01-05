@@ -84,6 +84,9 @@ orientationManager.addOnChangedListener(new OnChangedListener() {
 });
 ```
 
+the registered OnChangedListener will receive orientation & location updates, on which your application can act.
+
+
 To record orientation & location data
 -------------------------------------
 
@@ -105,6 +108,9 @@ recordingOrientationManager.startRecording();
 recordingOrientationManager.stopRecording();
 ```
 
+on each startRecording() / stopRecording() pair, a new file will be created in omDir, named after the milliseconds passed since epoch, and will contain all the orientation & location updates that were sent by the Glass' sensors. This data can be used to re-play it for development & other purposes - see below.
+
+
 To replay recorded orientation
 ------------------------------
 
@@ -113,6 +119,7 @@ To replay a recorded orientation / location session, as if it was
 
 ```
 ReplayingOrientationManager replayingOrientationManager = new ReplayingOrientationManager();
+
 replayingOrientationManager.addReplayListener(new ReplayListener() {
     @Override
     public void onReplayFinsihed() {
@@ -125,5 +132,4 @@ replayingOrientationManager.setFile(new File(omDir, fileName));
 replayingOrientationManager.start();
 ```
 
-
-
+and then use the replayingOrientationManager as a 'real' orientation manager in your app.
