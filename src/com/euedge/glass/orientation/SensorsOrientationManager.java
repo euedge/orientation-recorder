@@ -120,8 +120,8 @@ public class SensorsOrientationManager implements OrientationManager {
                 notifyOrientationChanged();
                 
             } else if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
-                mRoll = (float) -Math.atan(event.values[0]
-                        / Math.sqrt(event.values[1] * event.values[1] + event.values[2] * event.values[2]));
+                mRoll = (float) Math.toDegrees(-Math.atan(event.values[0]
+                        / Math.sqrt(event.values[1] * event.values[1] + event.values[2] * event.values[2])));
 
                 notifyOrientationChanged();
             }

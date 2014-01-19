@@ -230,8 +230,7 @@ public class OrientationRecorderView extends View {
         float vertPixelsPerDegree = getHeight() / 45.0f;
         
         canvas.save();
-        canvas.rotate((float) -Math.toDegrees(mOrientation.getRoll()),
-  		      		   getWidth()/2, getHeight()/2);
+        canvas.rotate((float) -mOrientation.getRoll(), getWidth()/2, getHeight()/2);
         canvas.translate(0, mOrientation.getPitch() * vertPixelsPerDegree + getHeight()/2);
         drawPitchRoll(canvas, vertPixelsPerDegree);
         canvas.restore();
@@ -489,7 +488,14 @@ public class OrientationRecorderView extends View {
                 }
 
                 mAnimator.setFloatValues(start, goal);
-                mAnimator.start();
+                // make sure the animation is started from within the UI thread
+                post(new Runnable() {
+					@Override
+					public void run() {
+						mAnimator.start();
+					}
+                	
+                });
             }
         }
     }
